@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tele_taxi/src/utils/check_internet_connection.dart';
+import 'package:tele_taxi/src/widgets/menu.dart';
 import 'package:tele_taxi/src/widgets/warning_widget_cubit.dart';
 
 final internetChecker = CheckInternetConnection();
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
       ),
         body: Column(
           children: [
-            const WarningWidgetCubit(),
+            //const WarningWidgetCubit(),
+            Menu()
           ],
         ),
     );
