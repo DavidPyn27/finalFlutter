@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tele_taxi/src/widgets/form_service.dart';
 
 void main() => runApp(const Menu());
 
@@ -10,6 +11,7 @@ class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: _title,
       home: MyStatefulWidget(),
     );
@@ -32,10 +34,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       'Inicio',
       style: optionStyle,
     ),
-    Text(
-      'Solicitar servicio',
-      style: optionStyle,
-    ),
+    FormService(),
     Text(
       'Iniciar sesión',
       style: optionStyle,
@@ -72,6 +71,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             label: 'Iniciar sesión',
           ),
         ],
+        currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(FormService());
+void main() => runApp(const FormService());
 
 class FormService extends StatefulWidget {
+  const FormService();
   @override
   FormServiceState createState() {
     return FormServiceState();
@@ -10,18 +11,72 @@ class FormService extends StatefulWidget {
 }
 
 class FormServiceState extends State<FormService> {
-    // Crea una clave global que identificará de manera única el widget Form
-    // y nos permita validar el formulario
-    //
-    // Nota: Esto es un `GlobalKey<FormState>`, no un GlobalKey<MyCustomFormState>!
     final _formKey = GlobalKey<FormState>();
-
     @override
     Widget build(BuildContext context) {
-      // Cree un widget Form usando el _formKey que creamos anteriormente
+      const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.black87);
       return Form(
           key: _formKey,
-          child: // Construiremos esto en los siguientes pasos!
+          child: Padding(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                  'Solicitar Servicio',
+                  style: optionStyle,
+                ),
+                Padding(
+                    child: TextFormField(
+                      keyboardType: TextInputType.phone,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Télefono',
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Ingrese su télefono';
+                        }
+                        return null;
+                      },
+                    ),
+                    padding: const EdgeInsets.only(top: 16),
+                ),
+                Padding(
+                  child: TextFormField(
+                    keyboardType: TextInputType.streetAddress,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Dirección',
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Ingrese la dirección';
+                      }
+                      return null;
+                    },
+                  ),
+                  padding: const EdgeInsets.only(top: 16),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: MaterialButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+
+                        Scaffold.of(context).showSnackBar(const SnackBar(content: Text('Solicitando servicios')));
+                      }
+                    },
+                    child: const Text('Solicitar'),
+                    color:  Colors.blue,
+                    textColor: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+            padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 16.0),
+          )
       );
     }
   }
