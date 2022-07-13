@@ -1,0 +1,5 @@
+class SolicitudeService {
+  void sendSolicitude(  ){
+
+  }
+}
