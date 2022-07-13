@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tele_taxi/src/widgets/form_service.dart';
+import 'package:tele_taxi/src/widgets/warning_widget_cubit.dart';
 
 void main() => runApp(const Menu());
 
 class Menu extends StatelessWidget {
   const Menu();
-
   static const String _title = 'Tele Taxi';
 
   @override
@@ -51,10 +51,17 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tele Taxi'),
+        title: const Text('TeleTaxi'),
+        backgroundColor: Colors.yellow.shade800,
+        leading: Container(
+          child: Image.asset("assets/images/logo.png"),
+        ),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: Column(
+        children: <Widget>[
+          WarningWidgetCubit(),
+          _widgetOptions.elementAt(_selectedIndex),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
