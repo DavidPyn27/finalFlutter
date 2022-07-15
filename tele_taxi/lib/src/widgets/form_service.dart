@@ -1,4 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:tele_taxi/src/controllers/services.dart';
+
+import '../controllers/c_request_service.dart';
 
 void main() => runApp(const FormService());
 
@@ -12,6 +17,8 @@ class FormService extends StatefulWidget {
 
 class FormServiceState extends State<FormService> {
     final _formKey = GlobalKey<FormState>();
+    TextEditingController phoneController = TextEditingController();
+    TextEditingController addressController = TextEditingController();
     @override
     Widget build(BuildContext context) {
       const TextStyle optionStyle =
@@ -28,6 +35,7 @@ class FormServiceState extends State<FormService> {
                 ),
                 Padding(
                     child: TextFormField(
+                      controller: phoneController,
                       keyboardType: TextInputType.phone,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -44,6 +52,7 @@ class FormServiceState extends State<FormService> {
                 ),
                 Padding(
                   child: TextFormField(
+                    controller: addressController,
                     keyboardType: TextInputType.streetAddress,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
@@ -64,8 +73,8 @@ class FormServiceState extends State<FormService> {
                   child: MaterialButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-
                         Scaffold.of(context).showSnackBar(const SnackBar(content: Text('Solicitando servicios')));
+                        //Services().createRequestService(CRequestService(phone: phoneController.text, address: addressController.text, uidNotification: ''));
                       }
                     },
                     child: const Text('Solicitar'),

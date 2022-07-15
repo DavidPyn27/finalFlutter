@@ -1,13 +1,6 @@
-class CSolicitudeService {
-  final int id;
-  final String title;
-
-  const Album({required this.id, required this.title});
-
-  factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(
-      id: json['id'],
-      title: json['title'],
-    );
-  }
+class CRequestService {
+  final String phone;
+  final String address;
+  final String uidNotification;
+  const CRequestService({required this.phone, required this.address, required this.uidNotification});
 }
